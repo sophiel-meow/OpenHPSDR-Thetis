@@ -422,6 +422,12 @@
     <Compile Include="console.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LanguageManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Translations.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="cwedit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -787,6 +793,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="console.resx">
+      <DependentUpon>console.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="console.zh-CN.resx">
       <DependentUpon>console.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

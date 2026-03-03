@@ -1138,6 +1138,16 @@ namespace Thetis
             do_platform_prep();
             update_diagram = true;
             canvas.Invalidate();
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+            this.FormClosed += (s, e2) => LanguageManager.LanguageChanged -= OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e)

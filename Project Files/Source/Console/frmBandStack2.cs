@@ -47,6 +47,14 @@ namespace Thetis
         public frmBandStack2()
         {
             InitializeComponent();
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         public void InitForm()

@@ -32,6 +32,15 @@ namespace Thetis
             _advancedON = chkAdvancedViewHidden.Checked; //MW0LGE_[2.9.0.6]
 
             startPSThread(); // MW0LGE_21k8 removed the winform timers, now using dedicated thread
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         #endregion

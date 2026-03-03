@@ -834,6 +834,8 @@ namespace Thetis
             Splash.SetStatus("Initializing Components");        // Set progress point
 
             InitializeComponent();								// Windows Forms Generated Code
+            if (LanguageManager.CurrentCulture.Name != "en-US")
+                LanguageManager.ApplyLanguage(this);
             InitialiseAndromedaMenus();
 
             //
@@ -55485,6 +55487,22 @@ namespace Thetis
         {
             if (IsRightButton(e)) SetupForm.ShowSetupTab(Setup.SetupTab.AM_Tab);
         }
+
+        #region Language Menu Event Handlers
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.SetLanguage("en-US");
+            LanguageManager.ApplyLanguage(this);
+        }
+
+        private void chineseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageManager.SetLanguage("zh-CN");
+            LanguageManager.ApplyLanguage(this);
+        }
+
+        #endregion
     }
 
     public class DigiMode

@@ -71,6 +71,16 @@ namespace Thetis
             max_count = 1;
             textBox_file_date_time.Visible = false;
             textBox_file_comment.Visible = false;
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+            this.FormClosed += (s, e) => LanguageManager.LanguageChanged -= OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
         
         /// <summary>

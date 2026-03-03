@@ -330,6 +330,9 @@
         private ToolStripMenuItem toolStripNotchVeryDeep;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem setupToolStripMenuItem;
+        private ToolStripMenuItem languageToolStripMenuItem;
+        private ToolStripMenuItem englishToolStripMenuItem;
+        private ToolStripMenuItem chineseToolStripMenuItem;
         private ToolStripMenuItem memoryToolStripMenuItem;
         private ToolStripMenuItem waveToolStripMenuItem;
         private ToolStripMenuItem equalizerToolStripMenuItem;
@@ -851,6 +854,9 @@
             this.BPFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BPF1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BPF2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chineseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picRX2Squelch = new System.Windows.Forms.PictureBox();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripDropDownButton_ScreenSize = new System.Windows.Forms.ToolStripDropDownButton();
@@ -4065,7 +4071,8 @@
             this.RAtoolStripMenuItem,
             this.wBToolStripMenuItem,
             this.pIToolStripMenuItem,
-            this.BPFToolStripMenuItem});
+            this.BPFToolStripMenuItem,
+            this.languageToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -4877,11 +4884,32 @@
             this.BPF1ToolStripMenuItem.Click += new System.EventHandler(this.BPF1ToolStripMenuItem_Click);
             // 
             // BPF2ToolStripMenuItem
-            // 
+            //
             this.BPF2ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.BPF2ToolStripMenuItem.Name = "BPF2ToolStripMenuItem";
             resources.ApplyResources(this.BPF2ToolStripMenuItem, "BPF2ToolStripMenuItem");
             this.BPF2ToolStripMenuItem.Click += new System.EventHandler(this.BPF2ToolStripMenuItem_Click);
+            //
+            // languageToolStripMenuItem
+            //
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishToolStripMenuItem,
+            this.chineseToolStripMenuItem});
+            this.languageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            //
+            // englishToolStripMenuItem
+            //
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            //
+            // chineseToolStripMenuItem
+            //
+            this.chineseToolStripMenuItem.Name = "chineseToolStripMenuItem";
+            resources.ApplyResources(this.chineseToolStripMenuItem, "chineseToolStripMenuItem");
+            this.chineseToolStripMenuItem.Click += new System.EventHandler(this.chineseToolStripMenuItem_Click);
             // 
             // picRX2Squelch
             // 

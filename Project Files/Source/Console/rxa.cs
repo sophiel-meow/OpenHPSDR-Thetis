@@ -45,7 +45,16 @@ namespace Thetis
             //dockPanel.Theme = vS2012LightTheme1;
           //  rxControls.Show(dockPanel, DockState.DockRightAutoHide);
             //int width = dockPanel.GetDockWindowSize(DockState.DockRight);
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
          }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
+        }
 
         private void create_rxa()
         {

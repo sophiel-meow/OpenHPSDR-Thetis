@@ -26,6 +26,15 @@ namespace Thetis
             fwid = id;
             stid = fwid - 2;                                                // ChannelMaster stream id
             chid = 2 * stid;                                                // WDSP channel id
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         private void comboAudioSampleRate_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,6 +55,7 @@ namespace Thetis
         private void rxaControls_FormClosed(object sender, FormClosedEventArgs e)
         {
             cmaster.Getrxa(fwid).pDisplay.pauseDisplayThread = false;
+            LanguageManager.LanguageChanged -= OnLanguageChanged;
         }
 
         private void rxaControls_Activated(object sender, EventArgs e)

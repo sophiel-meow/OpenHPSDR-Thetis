@@ -33,6 +33,15 @@ namespace Thetis
             btnCopyToClipboard.Enabled = false;
 
             tabMain.SelectedIndex = 0;
+
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         public void InitAndShow()

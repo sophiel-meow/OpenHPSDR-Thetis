@@ -274,8 +274,17 @@ namespace Thetis
             };
             t.Start();
 
+            // Multi-language support
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
 
         } //memoryform
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
+        }
 
 
 

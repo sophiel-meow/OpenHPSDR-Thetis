@@ -20,6 +20,15 @@ namespace Thetis
         {
             InitializeComponent();
             this.Width = 930;
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
+            this.FormClosed += (s, e) => LanguageManager.LanguageChanged -= OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
         }
 
         private void btnMore_Click(object sender, EventArgs e)

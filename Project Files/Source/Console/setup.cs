@@ -571,7 +571,17 @@ namespace Thetis
 
             //MW0LGE_21h
             updateNetworkThrottleCheckBox();
+
+            // Multi-language support
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
         }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            LanguageManager.TranslateForm(this);
+        }
+
         private bool _bAddedDelegates = false;
         private void addDelegates()
         {
