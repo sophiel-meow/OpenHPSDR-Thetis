@@ -267,6 +267,8 @@ namespace Thetis
 			//
 			InitializeComponent();
 			console = c;
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
 			SetupControlArrays();
 			Common.RestoreForm(this, "XVTR", false);
             //if(console.fwc_init && console.CurrentModel == Model.FLEX5000)
@@ -292,6 +294,12 @@ namespace Thetis
             //    chkXVTRRF15.Visible = false;
             //}
 		}
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
+        }
 
 		/// <summary>
 		/// Clean up any resources being used.

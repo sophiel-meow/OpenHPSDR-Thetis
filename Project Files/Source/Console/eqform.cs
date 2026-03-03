@@ -121,6 +121,8 @@ namespace Thetis
 			//
 			InitializeComponent();
 			console = c;
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
 			Common.RestoreForm(this, "EQForm", false);
             Common.ForceFormOnScreen(this); //MW0LGE [2.9.0.7]
             
@@ -128,6 +130,12 @@ namespace Thetis
 			//tbTXEQ_Scroll(this, EventArgs.Empty);
             rad10Band_CheckedChanged(this, EventArgs.Empty);
 		}
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
+        }
 
 		/// <summary>
 		/// Clean up any resources being used.

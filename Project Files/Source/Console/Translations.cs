@@ -1301,6 +1301,27 @@ namespace Thetis
             { "ZTB is Recall/Store", "ZTB为调用/存储" },
             { "ZZSN:", "" },
             { "± Shift", "±偏移" },
+
+            // Memory form DataGridView column headers
+            { "Group", "分组" },
+            { "Name", "名称" },
+            { "DSP Mode", "DSP模式" },
+            { "Tune Step", "调谐步进" },
+            { "CTCSS Freq", "CTCSS频率" },
+            { "Deviation", "偏差" },
+            { "RXFilter", "接收滤波器" },
+            { "AGC Mode", "AGC模式" },
+            { "RX Freq", "接收频率" },
+            { "RPTR Offset", "中继偏移" },
+            { "TX Freq", "发射频率" },
+            { "RX Filter Low", "接收滤波低端" },
+            { "RX Filter High", "接收滤波高端" },
+            { "AGC-T", "AGC阈值" },
+            { "Schedule Start", "计划开始" },
+            { "Weekly", "每周" },
+            { "Monthly", "每月" },
+            {"Duration", "持续时间" }
+            // TODO: Add translations to sub-forms
         };
 
         /// <summary>

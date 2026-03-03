@@ -29,6 +29,10 @@ namespace Thetis
         private static readonly ConditionalWeakTable<Control, StrongBox<string>> _originalTexts =
             new ConditionalWeakTable<Control, StrongBox<string>>();
 
+        // Stores original (English) HeaderText for DataGridView columns
+        private static readonly ConditionalWeakTable<DataGridViewColumn, StrongBox<string>> _originalColumnHeaders =
+            new ConditionalWeakTable<DataGridViewColumn, StrongBox<string>>();
+
         public static event EventHandler LanguageChanged;
 
         public static CultureInfo CurrentCulture
@@ -140,6 +144,16 @@ namespace Thetis
                 _originalTexts.Add(control, new StrongBox<string>(control.Text ?? ""));
             }
 
+            // Handle DataGridView column headers
+            if (control is DataGridView dgv)
+            {
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (!_originalColumnHeaders.TryGetValue(col, out _))
+                        _originalColumnHeaders.Add(col, new StrongBox<string>(col.HeaderText ?? ""));
+                }
+            }
+
             foreach (Control child in control.Controls)
                 StoreOriginalTexts(child);
         }
@@ -158,6 +172,24 @@ namespace Thetis
                 }
             }
 
+            // Handle DataGridView column headers
+            if (control is DataGridView dgv)
+            {
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (_originalColumnHeaders.TryGetValue(col, out StrongBox<string> colBox))
+                    {
+                        string original = colBox.Value;
+                        if (!string.IsNullOrEmpty(original))
+                        {
+                            string translated = Translations.GetTranslation(original, currentCulture.Name);
+                            if (col.HeaderText != translated)
+                                col.HeaderText = translated;
+                        }
+                    }
+                }
+            }
+
             foreach (Control child in control.Controls)
                 ApplyTranslationsToControl(child);
         }
@@ -169,6 +201,19 @@ namespace Thetis
                 string original = box.Value;
                 if (control.Text != original)
                     control.Text = original;
+            }
+
+            // Restore DataGridView column headers
+            if (control is DataGridView dgv)
+            {
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (_originalColumnHeaders.TryGetValue(col, out StrongBox<string> colBox))
+                    {
+                        if (col.HeaderText != colBox.Value)
+                            col.HeaderText = colBox.Value;
+                    }
+                }
             }
 
             foreach (Control child in control.Controls)

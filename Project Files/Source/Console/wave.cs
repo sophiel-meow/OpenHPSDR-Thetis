@@ -94,9 +94,11 @@ namespace Thetis
 		#region Constructor and Destructor
 
 		public WaveControl(Console c)
-		{            
+		{
 			InitializeComponent();
             console = c;
+            LanguageManager.RegisterAndTranslateForm(this);
+            LanguageManager.LanguageChanged += OnLanguageChanged;
             if (!Directory.Exists(wave_folder))
             {
                 // create Thetis audio folder if it does not exist
@@ -112,6 +114,12 @@ namespace Thetis
 			this.ActiveControl = btnAdd;
 			Common.RestoreForm(this, "WaveOptions", false);
 		}
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            if (this.IsHandleCreated)
+                this.BeginInvoke((Action)(() => LanguageManager.TranslateForm(this)));
+        }
 
 		protected override void Dispose( bool disposing )
 		{
